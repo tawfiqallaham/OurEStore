@@ -10,5 +10,20 @@ package ourestore;
  * @author tawfi
  */
 public abstract class Product {
+    private int productId;
+    private String name;
+    private double price;
+    private int stockQuantity;
+    private static int idGenerator=1;
+
+    public Product(){}
+    public Product(String name, double price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.productId=idGenerator;
+        idGenerator++;
+    }
+    
     
 }
