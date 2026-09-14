@@ -65,5 +65,10 @@ public abstract class Product {
         Product.idGenerator = idGenerator;
     }
     
-     
+    public void print(){
+         System.out.println("name: "+name+
+                            "\nID: "+productId+
+                            "\nprice: "+ price+"$"+
+                            "\nsotck quantity: "+stockQuantity);
+     }
 }

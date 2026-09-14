@@ -45,5 +45,11 @@ public class Electronics extends Product{
     public void setWarrantyPeriod(Period warrantyPeriod) {
         this.warrantyPeriod = warrantyPeriod;
     }
+
+    @Override
+    public void print() {
+        super.print();
+        System.out.println("brand:" + brand + "\npowerConsumption: " + powerConsumption +"\nwarrantyPeriod: " + warrantyPeriod );
+    }
     
 }

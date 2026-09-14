@@ -56,7 +56,18 @@ public class Grocery extends Product{
     public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
-    
+    @Override
+   public void print(){
+        super.print();
+        System.out.print("type: Grocery\n"+
+                            "selling Unit: "+sellingUnit+
+                            "\n is gluten free: ");
+        if(isGlutenFree)System.out.println("yes");else System.out.println("no");
+        System.out.print("isRefrigerated");
+        if(isRefrigerated)System.out.println("yes");else System.out.println("no");
+        System.out.println("expirationDate: "+expirationDate);
+
+    }
 
     
 }

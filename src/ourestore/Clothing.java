@@ -54,7 +54,16 @@ public class Clothing extends Product{
     public void setFabricType(String fabricType) {
         this.fabricType = fabricType;
     }
-     
+    @Override
+     public void print(){
+         super.print();
+         System.out.println("brand: " + brand + "\nsize: " + size + "\ncolor: " + color + "\nfabricType: " + fabricType );
+     }
+
+    @Override
+    public String toString() {
+        return "Clothing{" + + '}';
+    }
     
     public enum Size{
         XS,S,M,L,XL,XXL;
