@@ -11,9 +11,10 @@ import ourestore.Clothing.Size;
  * @author tawfi
  */
 public class ConsolUI {
+    static private Scanner in=new Scanner(System.in);
     public void registerProduct(InventoryManager manager){
+    
         
-        Scanner in=new Scanner(System.in);
         System.out.println("enter product name");
         String name="";
         do{
@@ -161,7 +162,7 @@ public class ConsolUI {
                 System.out.println("enter brand's name");
                 String brand="";
                 do{
-                   while(brand.trim().isEmpty())brand=in.nextLine();
+                   while(brand.trim().isEmpty()) brand=in.nextLine();
                     try{
                         Integer.parseInt(brand);
                         System.out.println("brand's name can't consist entirely of numbers try again");
@@ -276,5 +277,98 @@ public class ConsolUI {
                 
         }
        
+    }
+    
+    public void deleteProduct(InventoryManager manger){
+        int deletedIndex=this.searchForProduct(manger);
+        if(deletedIndex==-1)return;
+        boolean confirm;
+        System.out.println("are you sure you want to delelte this product(yes/no)");
+        do{
+            String temp=in.next();
+            if(temp.equalsIgnoreCase("yes")){
+                confirm=true;
+                break;
+            }
+            else if(temp.equalsIgnoreCase("no")){
+                confirm=false;
+                break;
+            }
+            else{
+                System.out.println("invalid input try again");
+            }
+
+        }while(true);
+        if(confirm)manger.removeProduct(deletedIndex);
+    }
+    public int searchForProduct(InventoryManager manger){
+        int index=0;
+        System.out.println("1-search by name\nsearch by id");
+        while(index!=1&&index!=2){
+            try{
+                index=in.nextInt();
+            }catch(Exception e){
+                System.out.println("invalid input try again");
+                in.nextLine();
+            }
+        }
+        switch(index){
+        case 1:
+            String name="";
+            while(name.trim().isEmpty())name=in.nextLine();
+            return manger.findProduct(name);
+        case 2:
+            int id;
+            while(true){
+                try{
+                    id=in.nextInt();
+                    break;
+                }catch(Exception e){
+                    System.out.println("invalid input try again");
+                    in.nextLine();
+                }
+            }
+            return manger.findProduct(id);
+        }
+        return -1;
+    }
+    public void displayProducts(InventoryManager manger){
+        int index=0;
+        System.out.println("1-display all products\ndisplay all products of one type");
+        while(index!=1&&index!=2){
+            try{
+                index=in.nextInt();
+            }catch(Exception e){
+                System.out.println("invalid input try again");
+                in.nextLine();
+            }
+        }
+        switch(index){
+            case 1:
+                manger.displayAllProduct();
+                break;
+            case 2:
+                index=-1;
+                System.out.println("enter product type:(enter the index only)\n1-Grocery\n2-Electronics\n3-Clothing");
+                while(!(index<1)&&!(index>3)){
+                    try{
+                        index=in.nextInt();
+                    }catch(Exception e){
+                        System.out.println("invalid input try again");
+                        in.nextLine();
+                    }
+                }  
+                switch(index){
+                    case 1:
+                        manger.displayAllProductOfOneType("Grocery");
+                        break;
+                    case 2:
+                        manger.displayAllProductOfOneType("Electronics");
+                        break;
+                    case 3:
+                        manger.displayAllProductOfOneType("Clothing");
+                        break;
+                }
+        }
     }
 }

@@ -23,4 +23,41 @@ public class InventoryManager {
         }
         products.add(product);
     }
+     public void removeProduct(int index){
+         products.remove(index);
+     
+     }
+    public int findProduct(String name){
+        int n=products.size();
+        for(int i=0;i<n;i++){
+            if(name.equals(products.get(i).getName())){
+                products.get(i).print();
+                return i;
+            }
+        }
+         System.out.println("Product not found");
+         return -1;
+    }    
+    public int findProduct(int id){
+        int n=products.size();
+        for(int i=0;i<n;i++){
+            if(products.get(i).getProductId()==id){
+                products.get(i).print();
+                return i;
+            }
+        }
+         System.out.println("Product not found");
+         return -1;
+    }
+    public void displayAllProduct(){
+        for(Product p:products){
+            p.print();
+        }
+    }
+    public void displayAllProductOfOneType(String type){
+        for(Product p:products){
+            if(p.getClass().getSimpleName().equals(type))
+            p.print();
+        }
+    }
 }
